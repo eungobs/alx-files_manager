@@ -1,12 +1,16 @@
 import express from 'express';
-import startServer from './libs/boot';
-import injectRoutes from './routes';
-import injectMiddlewares from './libs/middlewares';
+import Routes from './routes';
 
-const server = express();
+const app = express();
 
-injectMiddlewares(server);
-injectRoutes(server);
-startServer(server);
+app.use(express.json({ limit: '200mb' }));
 
-export default server;
+const port = process.env.port || '5000';
+
+Routes(app);
+
+app.listen(port, () => {
+  console.log(`app listening on port ${port}`);
+});
+
+export default app;
