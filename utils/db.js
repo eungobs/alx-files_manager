@@ -28,7 +28,7 @@ class DBClient {
    * @return {boolean} true if connection alive or false if not
    */
   isAlive() {
-    return Boolean(this.db);
+    return !!this.db;
   }
 
   /**
